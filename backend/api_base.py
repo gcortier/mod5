@@ -3,9 +3,6 @@ from loguru import logger
 from fastapi import FastAPI, HTTPException, Request
 from pydantic import BaseModel
 
-
-
-
 def setup_loguru(logfile="logs/app.log"):
     os.makedirs(os.path.dirname(logfile), exist_ok=True)
     logger.remove()
