@@ -88,5 +88,3 @@ pip freeze > requirements.txt
 - Phase docker build CD
 - Ajout des secrets DOCKER_* dans la partie action de github
 
-
-
