@@ -17,6 +17,6 @@ class NumberRequest(BaseModel):
 
 @app.post("/calcul")
 def calcul(req: NumberRequest):
-    logger.info(f"Calcul du carré pour: {req.number}")
     result = calcul_carre(req.number)
+    logger.info(f"Calcul du carré pour: {req.number} : result : {result}")
     return {"result": result}

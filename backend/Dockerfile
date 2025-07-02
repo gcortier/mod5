@@ -1,6 +1,7 @@
 FROM python:3.11-slim
 WORKDIR /app
 COPY main.py ./
+COPY api_base.py ./
 COPY modules ./modules
 COPY tests ./tests
 RUN pip install fastapi uvicorn loguru pydantic pytest
