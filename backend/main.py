@@ -11,7 +11,7 @@ class NumberRequest(BaseModel):
 @app.get("/")
 def read_root():
     logger.info("Root endpoint called")
-    return {"message": "Bienvenue sur l'API de calcul de carré."}
+    return {"message": "Bienvenue sur l'API de calcules bien carrés."}
 
 @app.get("/health")
 def health():

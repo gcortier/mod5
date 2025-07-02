@@ -84,3 +84,9 @@ pip freeze > requirements.txt
 ## Etapes de travail
 - Récupération de tout ce qui a été fait dans les autre modules pour faire un projet minimal avec fast api et streamlit, dockerisé et prêt pour l’intégration continue.
 - Exploration du doc github Actions : [Github_Actions](https://docs.google.com/document/d/1EgYEtMalAhMkZm5m78RHs62w6ngZxsqZOKuqMbj2E8c/edit?tab=t.0)
+- Compliqué de setup correctement les contecte d'executions.
+- Phase docker build CD
+- Ajout des secrets DOCKER_* dans la partie action de github
+
+
+
