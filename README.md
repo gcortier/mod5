@@ -77,6 +77,14 @@ pytest tests/
 ```bash
 pip install fastapi uvicorn loguru pydantic pytest streamlit requests
 ```
+```bash
+pip install -r requirements.txt
+```
+# sauvegarder le fichier requirements.txt
+```bash
+pip freeze > requirements.txt
+```
+
 
 ## CI/CD
 - Les tests sont lancés automatiquement via GitHub Actions (`.github/workflows/test.yml`).
