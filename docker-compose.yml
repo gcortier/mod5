@@ -5,14 +5,31 @@ services:
     container_name: backend
     ports:
       - "8000:8000"
+    # env_file:
+    #   - .env
     # volumes:
-    #   - ./backend:/app
+    #   - ./docker:/logs
+    environment:
+      - APP_ENV=${APP_ENV:-local}
+    networks:
+      - app-power  # Use host network for local development
+
   frontend:
     build: ./frontend
     container_name: frontend
     ports:
       - "8501:8501"
-    depends_on:
-      - backend
+    # env_file:
+    #   - .env
     # volumes:
     #   - ./frontend:/app
+    environment:
+      - API_URL=${API_URL:-http://backend:8000}
+    networks:
+      - app-power  # Use host network for local development
+    depends_on:
+      - backend
+
+networks:
+  app-power:
+    driver: bridge
