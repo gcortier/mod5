@@ -30,4 +30,4 @@ jobs:
           # pip install -e libcpab
       - name: Run unit tests
         run: |
-          pytest tests/test_calcul.py
+          PYTHONPATH=. pytest tests/test_calcul.py
