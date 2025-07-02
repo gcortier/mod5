@@ -33,29 +33,19 @@ Ce projet propose une architecture de base pour déployer des applications IA av
 - **Tests** : Couverture de la fonction de calcul avec Pytest
 - **CI/CD** : Lancement automatique des tests à chaque push
 
-## Prérequis
-- Docker & Docker Compose
-- Python 3.10+
 
 ## Installation & Lancement
 
-### 1. Cloner le dépôt
-```bash
-git clone <repo_url>
-cd mod5
-```
-
-### 2. Lancer avec Docker Compose
+### 1. Lancer avec Docker Compose
 ```bash
 docker compose up --build
 ```
 - Frontend : http://localhost:8501
 - Backend : http://localhost:8000/docs
 
-### 3. Lancer les tests backend (optionnel, hors Docker)
+### 2. Lancer les tests backend (optionnel, hors Docker)
 ```bash
 cd backend
-pip install -r <(pip freeze > requirements.txt && cat requirements.txt)
 pytest tests/
 ```
 
@@ -94,8 +84,3 @@ pip freeze > requirements.txt
 ## Etapes de travail
 - Récupération de tout ce qui a été fait dans les autre modules pour faire un projet minimal avec fast api et streamlit, dockerisé et prêt pour l’intégration continue.
 - Exploration du doc github Actions : [Github_Actions](https://docs.google.com/document/d/1EgYEtMalAhMkZm5m78RHs62w6ngZxsqZOKuqMbj2E8c/edit?tab=t.0)
-
-
-
-## Auteur
-FastIA – Template MLOps 2025
