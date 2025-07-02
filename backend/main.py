@@ -3,20 +3,12 @@ from pydantic import BaseModel
 from loguru import logger
 from modules.calcul import calcul_carre
 
-app = FastAPI()
+## Base initialisation for Loguru and FastAPI
+from api_base import setup_loguru, app, Request, HTTPException
+logger = setup_loguru("logs/main_api.log")
 
 class NumberRequest(BaseModel):
     number: int
-
-@app.get("/")
-def read_root():
-    logger.info("Root endpoint called")
-    return {"message": "Bienvenue sur l'API de calcules bien carrés."}
-
-@app.get("/health")
-def health():
-    logger.info("Health check endpoint called")
-    return {"status": "ok"}
 
 @app.post("/calcul")
 def calcul(req: NumberRequest):
