@@ -27,7 +27,7 @@ jobs:
           pip install -r ../requirements.txt
           # pip install -r <(pip freeze > requirements.txt && cat requirements.txt)
           pip install pytest
-          pip install -e libcpab
+          # pip install -e libcpab
       - name: Run unit tests
         run: |
           pytest tests/test_calcul.py
