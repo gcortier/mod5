@@ -3,10 +3,14 @@ global:
   evaluation_interval: 5s
 
 scrape_configs:
-  - job_name: 'fast api'
+  - job_name: 'fastapi42'
     static_configs:
-      - targets: ['backend:${API_PORT}']
+      - targets: ['backend:8000']
   
   - job_name: 'prometheus'
     static_configs:
-      - targets: ['localhost:${PROMETHEUS_PORT}']
+      - targets: ['localhost:9090']
+
+  - job_name: 'node'
+    static_configs:
+      - targets: ['node-exporter:9100']

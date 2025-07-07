@@ -5,3 +5,4 @@ prometheus-client
 python-multipart
 loguru
 psutil
+prometheus-fastapi-instrumentator

@@ -98,3 +98,8 @@ pip freeze > requirements.txt
 - Exploration du doc et tests pour Uptime Kuma + hook discord
 - Explorations et setup à partir du projet git docker-compose-prometheus-grafana en référence + qq articles :
   - [Building a Monitoring Stack with Prometheus, Grafana, and Alerting: A Docker Compose](https://medium.com/@ravipatel.it/building-a-monitoring-stack-with-prometheus-grafana-and-alerting-a-docker-compose-ef78127e4a19)
+  - Monitoring systeme avec Prometheus et Grafana (dashboard 1860) : on doit ajouter un container node-exporter pour monitorer le système
+  - Ajout et visualisation du dashboard dands Grafana
+  - - Trouver un moyen d'automatiser de log des appel aux routes : implementation 'prometheus-fastapi-instrumentator'
+  - Ajout d'un dashboard pour visualiser les appels à l'API FastAPI
+

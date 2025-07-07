@@ -7,13 +7,7 @@ from fastapi import FastAPI, Form
 from pydantic import BaseModel
 from loguru import logger
 from modules.calcul import calcul_carre
-
-
-from prometheus_client import Counter, Gauge, generate_latest, CONTENT_TYPE_LATEST
-from loguru import logger
-import os
-import psutil
-from starlette.responses import Response
+from prometheus_fastapi_instrumentator import Instrumentator
 
 
 ## Base initialisation for Loguru and FastAPI
@@ -34,6 +28,5 @@ async def receive_color(data: str = Form(...)):
     logger.info(f"Received data: {data}")
     return {"message": f"data {data} received"}
 
-@app.get("/metrics")
-async def metrics():
-    return "toto"
+# Export automatisé des endpoints pour Prometheus
+Instrumentator().instrument(app).expose(app)
