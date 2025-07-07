@@ -86,6 +86,7 @@ pip freeze > requirements.txt
 
 ## CI/CD
 - Les tests sont lancés automatiquement via GitHub Actions (`.github/workflows/test.yml`).
+- La dernière version de chaque image Docker est poussée sur Docker Hub à chaque push.
 
 
 
@@ -99,7 +100,7 @@ pip freeze > requirements.txt
 - Explorations et setup à partir du projet git docker-compose-prometheus-grafana en référence + qq articles :
   - [Building a Monitoring Stack with Prometheus, Grafana, and Alerting: A Docker Compose](https://medium.com/@ravipatel.it/building-a-monitoring-stack-with-prometheus-grafana-and-alerting-a-docker-compose-ef78127e4a19)
   - Monitoring systeme avec Prometheus et Grafana (dashboard 1860) : on doit ajouter un container node-exporter pour monitorer le système
-  - Ajout et visualisation du dashboard dands Grafana
-  - - Trouver un moyen d'automatiser de log des appel aux routes : implementation 'prometheus-fastapi-instrumentator'
+  - Ajout et visualisation du dashboard dans Grafana
+    - Trouver un moyen d'automatiser les logs des appels aux routes : implementation 'prometheus-fastapi-instrumentator'
   - Ajout d'un dashboard pour visualiser les appels à l'API FastAPI
 

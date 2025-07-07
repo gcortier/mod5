@@ -23,9 +23,15 @@ def calcul(req: NumberRequest):
     logger.info(f"Calcul du carré pour: {req.number} : result : {result}")
     return {"result": result}
 
+
+from prometheus_client import Counter
+data_counter = Counter("data_value_total", "Compteur des valeurs reçues sur /data", ["value"])
+
+
 @app.post("/data")
 async def receive_color(data: str = Form(...)):
     logger.info(f"Received data: {data}")
+    data_counter.labels(value=data).inc()
     return {"message": f"data {data} received"}
 
 # Export automatisé des endpoints pour Prometheus
