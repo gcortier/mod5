@@ -1,6 +1,4 @@
-sources
 .venv
 __pycache__
-mlartifacts
-mlruns
+.pytest_cache
 .env

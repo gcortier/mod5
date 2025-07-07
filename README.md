@@ -33,29 +33,27 @@ Ce projet propose une architecture de base pour déployer des applications IA av
 - **Tests** : Couverture de la fonction de calcul avec Pytest
 - **CI/CD** : Lancement automatique des tests à chaque push
 
-## Prérequis
-- Docker & Docker Compose
-- Python 3.10+
 
 ## Installation & Lancement
-
-### 1. Cloner le dépôt
+- Le `.venv` 
 ```bash
-git clone <repo_url>
-cd mod5
+python -m venv .venv
+```
+- activer l'environnement virtuel :
+```bash
+.venv\Scripts\Activate.ps1
 ```
 
-### 2. Lancer avec Docker Compose
+### 1. Lancer avec Docker Compose
 ```bash
 docker compose up --build
 ```
 - Frontend : http://localhost:8501
 - Backend : http://localhost:8000/docs
 
-### 3. Lancer les tests backend (optionnel, hors Docker)
+### 2. Lancer les tests backend (optionnel, hors Docker)
 ```bash
 cd backend
-pip install -r <(pip freeze > requirements.txt && cat requirements.txt)
 pytest tests/
 ```
 
@@ -75,7 +73,7 @@ pytest tests/
 
 ### Installation rapide (hors Docker)
 ```bash
-pip install fastapi uvicorn loguru pydantic pytest streamlit requests
+pip install fastapi uvicorn loguru pydantic pytest streamlit requests prometheus-client python-multipart psutil
 ```
 ```bash
 pip install -r requirements.txt
@@ -88,14 +86,21 @@ pip freeze > requirements.txt
 
 ## CI/CD
 - Les tests sont lancés automatiquement via GitHub Actions (`.github/workflows/test.yml`).
+- La dernière version de chaque image Docker est poussée sur Docker Hub à chaque push.
 
 
 
 ## Etapes de travail
 - Récupération de tout ce qui a été fait dans les autre modules pour faire un projet minimal avec fast api et streamlit, dockerisé et prêt pour l’intégration continue.
 - Exploration du doc github Actions : [Github_Actions](https://docs.google.com/document/d/1EgYEtMalAhMkZm5m78RHs62w6ngZxsqZOKuqMbj2E8c/edit?tab=t.0)
+- Compliqué de setup correctement les contecte d'executions.
+- Phase docker build CD
+- Ajout des secrets DOCKER_* dans la partie action de github
+- Exploration du doc et tests pour Uptime Kuma + hook discord
+- Explorations et setup à partir du projet git docker-compose-prometheus-grafana en référence + qq articles :
+  - [Building a Monitoring Stack with Prometheus, Grafana, and Alerting: A Docker Compose](https://medium.com/@ravipatel.it/building-a-monitoring-stack-with-prometheus-grafana-and-alerting-a-docker-compose-ef78127e4a19)
+  - Monitoring systeme avec Prometheus et Grafana (dashboard 1860) : on doit ajouter un container node-exporter pour monitorer le système
+  - Ajout et visualisation du dashboard dans Grafana
+    - Trouver un moyen d'automatiser les logs des appels aux routes : implementation 'prometheus-fastapi-instrumentator'
+  - Ajout d'un dashboard pour visualiser les appels à l'API FastAPI
 
-
-
-## Auteur
-FastIA – Template MLOps 2025
