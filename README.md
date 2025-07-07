@@ -35,6 +35,14 @@ Ce projet propose une architecture de base pour déployer des applications IA av
 
 
 ## Installation & Lancement
+- Le `.venv` 
+```bash
+python -m venv .venv
+```
+- activer l'environnement virtuel :
+```bash
+.venv\Scripts\Activate.ps1
+```
 
 ### 1. Lancer avec Docker Compose
 ```bash
@@ -65,7 +73,7 @@ pytest tests/
 
 ### Installation rapide (hors Docker)
 ```bash
-pip install fastapi uvicorn loguru pydantic pytest streamlit requests
+pip install fastapi uvicorn loguru pydantic pytest streamlit requests prometheus-client python-multipart psutil
 ```
 ```bash
 pip install -r requirements.txt
@@ -87,4 +95,6 @@ pip freeze > requirements.txt
 - Compliqué de setup correctement les contecte d'executions.
 - Phase docker build CD
 - Ajout des secrets DOCKER_* dans la partie action de github
-
+- Exploration du doc et tests pour Uptime Kuma + hook discord
+- Explorations et setup à partir du projet git docker-compose-prometheus-grafana en référence + qq articles :
+  - [Building a Monitoring Stack with Prometheus, Grafana, and Alerting: A Docker Compose](https://medium.com/@ravipatel.it/building-a-monitoring-stack-with-prometheus-grafana-and-alerting-a-docker-compose-ef78127e4a19)

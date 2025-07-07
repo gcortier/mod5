@@ -1,35 +1,85 @@
-version: '3.9'
 services:
   backend:
     build: ./backend
     container_name: backend
     ports:
-      - "8000:8000"
+      - "8000:${API_PORT}"
     # env_file:
     #   - .env
     # volumes:
     #   - ./docker:/logs
     environment:
-      - APP_ENV=${APP_ENV:-local}
+      - API_PORT=${API_PORT}
     networks:
-      - app-power  # Use host network for local development
+      - app_network
+    restart: unless-stopped
 
   frontend:
     build: ./frontend
     container_name: frontend
     ports:
-      - "8501:8501"
+      - "8501:${STREAMLIT_PORT}"
     # env_file:
     #   - .env
-    # volumes:
-    #   - ./frontend:/app
+    volumes:
+      - ./logs:/logs  # Montage du volume pour stocker les logs
     environment:
       - API_URL=${API_URL:-http://backend:8000}
-    networks:
-      - app-power  # Use host network for local development
     depends_on:
       - backend
+    networks:
+      - app_network 
+
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "${PROMETHEUS_PORT}:${PROMETHEUS_PORT}"
+    environment:
+      - API_PORT=${API_PORT}
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    depends_on:
+      - backend
+    networks:
+      - app_network
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "${GRAFANA_PORT}:${GRAFANA_PORT}"
+    environment:
+      - GF_SECURITY_ADMIN_USER= ${GRAFANA_ADMIN_USER}
+      - GF_SECURITY_ADMIN_PASSWORD- ${GRAFANA_ADMIN_PASSWORD}
+      - API_PORT=${API_PORT}
+      - PROMETHEUS_PORT=${PROMETHEUS_PORT}
+    volumes:
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources      
+    depends_on:
+      - prometheus
+    networks:
+      - app_network
+
+  uptime-kuma:
+    image: louislam/uptime-kuma:latest
+    container_name: uptime_kuma
+    ports:
+      - "3001:3001"
+    volumes:
+      - uptime-kuma-data:/app/data
+    restart: unless-stopped
+    networks:
+      - app_network
+
+
+
+volumes:
+  uptime-kuma-data:
+
 
 networks:
-  app-power:
+  app_network:
     driver: bridge

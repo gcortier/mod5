@@ -1,0 +1,19 @@
+{
+  "id": 1860,
+  "uid": "system-dashboard-1860",
+  "title": "Node Exporter Full",
+  "tags": [
+    "prometheus"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 16,
+  "version": 1,
+  "refresh": "5s",
+  "panels": [],
+  "templating": {
+    "list": []
+  },
+  "annotations": {
+    "list": []
+  }
+}

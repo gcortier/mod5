@@ -1,0 +1,12 @@
+global:
+  scrape_interval: 5s 
+  evaluation_interval: 5s
+
+scrape_configs:
+  - job_name: 'fast api'
+    static_configs:
+      - targets: ['backend:${API_PORT}']
+  
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:${PROMETHEUS_PORT}']
